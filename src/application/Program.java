@@ -1,5 +1,6 @@
 package application;
 
+import entities_board.Board;
 import entities_board.Position;
 
 public class Program {
@@ -11,6 +12,8 @@ public class Program {
 		System.out.println(p);
 		p.setValues(5, 5);
 		System.out.println(p);
+		
+		Board board = new Board(8,8);
 		
 	}
 
