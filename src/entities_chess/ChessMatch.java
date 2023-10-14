@@ -1,7 +1,6 @@
 package entities_chess;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 import entities_board.Board;
 import entities_board.Position;
@@ -28,10 +27,18 @@ public class ChessMatch {
 		return mat;
 	}
 	
+	private void placeNewPiece(char column,int row, ChessPiece piece) {
+		
+		ChessPosition position = new ChessPosition(column,row);
+		board.placePiece(piece, position.toPosition()); // toPosition convertemos para matrix
+		
+	}
+	
 	private void initialSetup() {
-		board.placePiece(new Rook(board, Color.WHITE), new Position(2,1));
-		board.placePiece(new Rook(board, Color.BLACK), new Position(0,4));
-		board.placePiece(new Rook(board, Color.WHITE), new Position(7,4));
+		
+		placeNewPiece('b',6,new Rook(board, Color.WHITE));
+		placeNewPiece('e',8,new Rook(board, Color.BLACK));
+		placeNewPiece('e',1,new Rook(board, Color.WHITE));
 	}
 	
 

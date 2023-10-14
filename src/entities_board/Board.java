@@ -30,7 +30,7 @@ public class Board {
 	}
 
 	public Piece piece(int row, int col) { // retorna uma peça!
-		if (positionExists(row, col) != true) {
+		if (!positionExists(row, col)) {
 			throw new BoardException("This position doesn't exist!!");
 		}
 		return p[row][col];
@@ -38,15 +38,15 @@ public class Board {
 
 	public Piece piece(Position position) { // retorna uma peça pela posicao!!
 
-		if (positionExists(position) != true) {
+		if (!positionExists(position)) {
 			throw new BoardException("This position doesn't exist!!");
 		}
 		return p[position.getRow()][position.getCol()];
 	}
 
 	public void placePiece(Piece piece, Position position) throws BoardException {
-		boolean pode = thereIsAPiece(position);
-		if (pode != true) {
+		
+		if (thereIsAPiece(position)) {
 			throw new BoardException("This position is occupied!!");
 		}
 		p[position.getRow()][position.getCol()] = piece;
@@ -64,15 +64,12 @@ public class Board {
 
 	public boolean thereIsAPiece(Position position) throws BoardException {
 		
-		if (positionExists(position) != true) {
+		if (!positionExists(position)) {
 			throw new BoardException("This position doesn't exist!!");
 		}
-		boolean existe = true;
-		if (piece(position) == null) {
-			existe = false;
-		}
+		
 
-		return existe;
+		return piece(position) != null;
 	}
 
 }
