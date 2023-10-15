@@ -1,6 +1,8 @@
 package entities_chess;
 
-public class ChessException extends RuntimeException{
+import entities_board.BoardException;
+
+public class ChessException extends BoardException{
 	
 
 	/**
