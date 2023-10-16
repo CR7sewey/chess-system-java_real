@@ -1,6 +1,6 @@
 package entities_board;
 
-public class Piece {
+public abstract class Piece {
 
 	protected Position position; //nao quero que seja visivel na camada do xadrez!
 	private Board board;
@@ -19,6 +19,28 @@ public class Piece {
 	}
 
 	
+	public abstract boolean[][] possibleMoves(); // nao sei de uma peca generica
+	
+	public boolean possibleMove(Position position) {
+		
+		return possibleMoves()[position.getRow()][position.getCol()];
+		// if false nao pode, if true pode
+			
+	}
 
+	public boolean isThereAnyPossibleMove() {
+		boolean[][] matriz = possibleMoves();
+		for (int i = 0; i<matriz.length; i++) {
+			for (int j = 0; j<matriz.length; j++) {
+				if (matriz[i][j]) {
+					return true;
+				}
+				
+	
+			}
+		}
+		return false;
+		
+	}
 		
 }
