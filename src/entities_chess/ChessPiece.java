@@ -2,6 +2,7 @@ package entities_chess;
 
 import entities_board.Board;
 import entities_board.Piece;
+import entities_board.Position;
 
 public abstract class ChessPiece extends Piece {
 
@@ -17,20 +18,11 @@ public abstract class ChessPiece extends Piece {
 	public Color getColor() {
 		return color;
 	}
-
-
 	
-
-
-	
-
-
-	
-	
-	
-	
-	
-	
+	protected boolean isThereOpponentPiece(Position position) {
+		ChessPiece p = (ChessPiece) getBoard().piece(position);
+		return p.getColor() != color && p!=null; 
+		}
 	
 	
 

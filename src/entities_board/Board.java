@@ -6,7 +6,7 @@ import java.util.List;
 public class Board {
 
 	private int rows;
-	private int cols;
+	private int columns;
 
 	private Piece[][] p;
 
@@ -16,7 +16,7 @@ public class Board {
 			throw new BoardException("Error creating board: therre must be ate leats 1 r/c!");
 		}
 		this.rows = rows;
-		this.cols = cols;
+		this.columns = cols;
 		p = new Piece[rows][cols];
 
 	}
@@ -26,7 +26,7 @@ public class Board {
 	}
 
 	public int getCols() {
-		return cols;
+		return columns;
 	}
 
 	public Piece piece(int row, int col) { // retorna uma peça!
@@ -71,7 +71,7 @@ public class Board {
 	}
 
 	public boolean positionExists(int row, int col) {
-		return row >= 0 && row <= 8 && col >= 0 && col <= 8;
+		return row >= 0 && row < rows && col >= 0 && col < columns;
 	}
 
 	public boolean positionExists(Position position) {

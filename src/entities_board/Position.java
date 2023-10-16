@@ -3,12 +3,12 @@ package entities_board;
 public class Position {
 	
 	private int row;
-	private int col;
+	private int column;
 	
 	public Position(int row, int col) {
 		
 		this.row = row;
-		this.col = col;
+		this.column = col;
 	}
 
 	public int getRow() {
@@ -20,21 +20,21 @@ public class Position {
 	}
 
 	public int getCol() {
-		return col;
+		return column;
 	}
 
 	public void setCol(int col) {
-		this.col = col;
+		this.column = col;
 	}
 	
 	public void setValues(int row,int col) {
 		this.row = row;
-		this.col = col;
+		this.column = col;
 	}
 	
 	@Override
 	public String toString() {
-		return row+", "+col;
+		return row+", "+column;
 	}
 	
 	
