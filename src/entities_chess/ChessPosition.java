@@ -48,7 +48,7 @@ public class ChessPosition {
 	protected static ChessPosition fromPosition(Position position) {
 		int row = -position.getRow()+8;
 		int col = position.getCol();
-		return new ChessPosition((char) ('a'-col),row);
+		return new ChessPosition((char) ('a'+col),row);
 		
 		
 	}
