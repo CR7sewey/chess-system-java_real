@@ -9,10 +9,25 @@ import entities_chess.pieces.Rook;
 public class ChessMatch {
 
 	private Board board;
+	private int turn;
+	private Color currentPlayer;
+	
+	
 
 	public ChessMatch() {
 		board = new Board(8, 8);
 		initialSetup();
+		turn = 1;
+		currentPlayer = Color.WHITE;
+		
+	}
+	
+	public int getTurn() {
+		return turn;
+	}
+	
+	public Color getCurrentPlayer() {
+		return currentPlayer;
 	}
 
 	public ChessPiece[][] getPieces() { // para conhecer apenas a camda de xadrez e nao tab
@@ -43,17 +58,36 @@ public class ChessMatch {
 		validateSourcePosition(source);
 		validateTargetPosition(source, target);
 		Piece pecaCapturada = makeMove(source, target);
+		nextTurn();
 		return (ChessPiece) pecaCapturada;
 
+	}
+	
+	private void nextTurn() {
+		turn++;
+		currentPlayer = (currentPlayer == Color.WHITE) ? Color.BLACK : Color.WHITE;
+	//	if (turn%2==0) {
+			// quem joga é o Black --> currentPlayer = Color.BLACK;
+			
+	//	}
+	//	else {
+			// qume jogar é o White
+	//	}
+	
+		
 	}
 
 	private void validateSourcePosition(Position position) {
 		if (!board.thereIsAPiece(position)) {
 			throw new ChessException("There is no piece on source position");
 		}
+		if (currentPlayer != ((ChessPiece) board.piece(position)).getColor()) { // color porpriedade do chesspiece dai o casting
+			throw new ChessException("The chosen piece is not yours!");
+		}
 		if (!board.piece(position).isThereAnyPossibleMove()) {
 			throw new ChessException("There is no possible moves for the chosen piece");
 		}
+		
 	}
 
 	private void validateTargetPosition(Position source, Position target) {
