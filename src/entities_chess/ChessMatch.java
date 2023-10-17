@@ -1,5 +1,8 @@
 package entities_chess;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import entities_board.Board;
 import entities_board.Piece;
 import entities_board.Position;
@@ -11,6 +14,8 @@ public class ChessMatch {
 	private Board board;
 	private int turn;
 	private Color currentPlayer;
+	private List<Piece> piecesOnTheBoard = new ArrayList<>();
+	private List<Piece> capturedPieces = new ArrayList<>();
 	
 	
 
@@ -19,6 +24,9 @@ public class ChessMatch {
 		initialSetup();
 		turn = 1;
 		currentPlayer = Color.WHITE;
+		//capturedPieces; podia instancia aqui!!
+		
+		
 		
 	}
 	
@@ -100,6 +108,12 @@ public class ChessMatch {
 		Piece piece = board.removePiece(source);
 		Piece capturedPiece = board.removePiece(target);
 		board.placePiece(piece, target);
+		
+		if (capturedPiece != null) {
+			piecesOnTheBoard.remove(capturedPiece);
+			capturedPieces.add(capturedPiece);
+		}
+		
 		return capturedPiece;
 	}
 
@@ -107,7 +121,7 @@ public class ChessMatch {
 
 		ChessPosition position = new ChessPosition(column, row);
 		board.placePiece(piece, position.toPosition()); // toPosition convertemos para matrix
-
+		piecesOnTheBoard.add(piece);
 	}
 	
 
